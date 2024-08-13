@@ -1,9 +1,17 @@
+import { CarProps } from "@/types";
+
 export async function fetchCars() {
-  const headers = {
-    'x-rapidapi-key': 'f54d193a6amshfa8154b1dab2a6fp1577fbjsn709b2aa4def0',
-		'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
+  const apiKey = process.env.RAPID_API;
+  if (!apiKey) {
+    throw new Error("RAPID_API environment variable is not set");
   }
-  const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla',{headers: headers});
+
+  const headers: Record<string, string> = {
+    'x-rapidapi-key': apiKey,
+    'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
+  };
+
+  const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla', { headers });
 
   const result = await response.json();
 
@@ -24,3 +32,7 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 
   return rentalRatePerDay.toFixed(0);
 };
+
+export const generateCarImageUrl = (car: CarProps, angle?: string) => {
+
+}
