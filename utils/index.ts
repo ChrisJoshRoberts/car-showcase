@@ -1,22 +1,22 @@
 import { CarProps } from "@/types";
 
-export async function fetchCars() {
-  const apiKey = process.env.RAPID_API;
-  if (!apiKey) {
-    throw new Error("RAPID_API environment variable is not set");
-  }
+// export async function fetchCars() {
+//   const apiKey = process.env.RAPID_API;
+//   if (!apiKey) {
+//     throw new Error("RAPID_API environment variable is not set");
+//   }
 
-  const headers: Record<string, string> = {
-    'x-rapidapi-key': apiKey,
-    'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
-  };
+//   const headers: Record<string, string> = {
+//     'x-rapidapi-key': apiKey,
+//     'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
+//   };
 
-  const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla', { headers });
+//   const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla', { headers });
 
-  const result = await response.json();
+//   const result = await response.json();
 
-  return result;
-}
+//   return result;
+// }
 
 export const calculateCarRent = (city_mpg: number, year: number) => {
   const basePricePerDay = 50; // Base rental price per day in dollars
@@ -35,4 +35,19 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 
 export const generateCarImageUrl = (car: CarProps, angle?: string) => {
 
+}
+
+export async function fetchNewCars() {
+  const url = 'https://freetestapi.com/api/v1/cars';
+  const options = {
+    method: 'GET',
+  };
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch {
+    throw new Error("Error fetching data:");
+  }
 }
