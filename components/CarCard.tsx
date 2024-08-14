@@ -47,7 +47,7 @@ const CarCard = ({car}: CarCardProps) => {
               alt="steering wheel"
             />
             <p className='text-[14px]'>
-              {transmission === 'a' ? 'Automatic' : 'Manual'}
+              {transmission}
             </p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
@@ -69,7 +69,7 @@ const CarCard = ({car}: CarCardProps) => {
               alt="tire"
             />
             <p className='text-[14px]'>
-              {transmission.toLocaleUpperCase()}
+              {year}
             </p>
           </div>
         </div>
