@@ -1,20 +1,19 @@
 import { CarProps } from "@/types";
+import { FilterProps } from "@/types";
 
-export async function fetchCars() {
-  const apiKey = process.env.RAPID_API;
-  if (!apiKey) {
-    throw new Error("RAPID_API environment variable is not set");
-  }
+export async function fetchCars(filters: FilterProps) {
+  // const { manufacturer, year, model, limit, fuel } = filters;
 
-  const headers: Record<string, string> = {
-    'x-rapidapi-key': apiKey,
-    'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
+  // Set the required headers for the API request
+  const headers: HeadersInit = {
+    "X-RapidAPI-Key": process.env.RAPID_API || "",
+    "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
   };
 
   const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla', { headers });
 
   const result = await response.json();
-
+  console.log(result);
   return result;
 }
 
@@ -32,9 +31,3 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 
   return rentalRatePerDay.toFixed(0);
 };
-
-export const generateCarImageUrl = (car: CarProps, angle?: string) => {
-
-
-
-}
