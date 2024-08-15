@@ -12,9 +12,9 @@ interface CarCardProps {
 }
 
 const CarCard = ({car}: CarCardProps) => {
-  const {mileage, price, fuelType,engine, year,image, make, model, transmission} = car;
+  const {city_mpg, drive, year, make, model, transmission } = car;
   const [isOpen, setIsOpen] = useState(false);
-  // const carRent = calculateCarRent(city_mpg, year);
+  const carRent = calculateCarRent(city_mpg, year);
 
   return (
     <div className='car-card group'>
@@ -25,7 +25,7 @@ const CarCard = ({car}: CarCardProps) => {
         <span className='self-start text-[14px] font-semibold'>
           $
         </span>
-        {price}
+        {carRent}
         <span className='self-end text-[14px] font-medium'>/day</span>
       </p>
       <div className="relative w-full h-40 my-3 object-contain">
@@ -47,7 +47,7 @@ const CarCard = ({car}: CarCardProps) => {
               alt="steering wheel"
             />
             <p className='text-[14px]'>
-              {transmission}
+              {transmission === 'a' ? 'Automatic' : 'Manual'}
             </p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
@@ -58,7 +58,7 @@ const CarCard = ({car}: CarCardProps) => {
               alt="gas"
             />
             <p className='text-[14px]'>
-              {mileage} MPG
+              {city_mpg} MPG
             </p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
