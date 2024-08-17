@@ -8,14 +8,16 @@ export async function fetchCars() {
   if (!apiKey) {
     throw new Error("API key not found");
   }
-
+  if (!process.env.RAPID_API_KEY) {
+    console.error("API key is undefined");
+  }
   // Set the required headers for the API request
   const headers: HeadersInit = {
     "X-RapidAPI-Key": apiKey,
     "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
   };
 
-  const response = await fetch(`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla `, { headers });
+  const response = await fetch(`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla `, { headers: headers });
 
   const result = await response.json();
   console.log(result);
