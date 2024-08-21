@@ -4,11 +4,11 @@ import { FilterProps } from "@/types";
 export async function fetchCars() {
   // const { manufacturer, year, model, limit, fuel } = filters;
 
-  const apiKey = process.env.RAPID_API_KEY;
+  const apiKey = process.env.RAPID_API
   if (!apiKey) {
     throw new Error("API key not found");
   }
-  if (!process.env.RAPID_API_KEY) {
+  if (!process.env.RAPID_API) {
     console.error("API key is undefined");
   }
   // Set the required headers for the API request
@@ -17,8 +17,8 @@ export async function fetchCars() {
     "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
   };
 
-  const response = await fetch(`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla `, { headers: headers });
-
+  const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla', {headers: headers,} );
+  console.log(response);
   const result = await response.json();
   console.log(result);
   return result;
