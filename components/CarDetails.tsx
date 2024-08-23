@@ -116,5 +116,5 @@ const CarDetails = ({isOpen,closeModal, car }: CarDetailsProps) => {
     </>
   )
 }
-
+// export the component
 export default CarDetails
