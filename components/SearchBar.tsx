@@ -29,10 +29,10 @@ const SearchButton: React.FC<SearchButtonProps> = ({otherClasses}) => {
 const SearchBar = () => {
   const [manufacturer, setManufacturer] = useState('');
   const [model, setModel] = useState('');
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>)=> {
-    e.preventDefault
+    e.preventDefault();
     if(manufacturer === '' && model === '') {
       return alert('Please enter a manufacturer and model')
     }
@@ -46,7 +46,6 @@ const SearchBar = () => {
     } else {
       searchParams.delete('model')
     }
-
     if(manufacturer) {
       searchParams.set('manufacturer', manufacturer)
     } else {
@@ -55,7 +54,7 @@ const SearchBar = () => {
 
     const newPathName = `${window.location.pathname}?${searchParams.toString()}`
 
-    router.push(newPathName)
+    router.push(newPathName, {scroll: false})
   }
 
   return (
