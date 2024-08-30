@@ -3,16 +3,16 @@ import React, { useState, Fragment } from 'react'
 import Image from 'next/image'
 import { Listbox, Transition } from '@headlessui/react'
 import { CustomFilterProps } from '@/types'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { updateSearchParams } from '@/utils'
 
 const CustomFilter = ({ title, options }: CustomFilterProps) => {
   const [selected, setSelected] = useState(options[0])
-  const router = useRouter()
+  const router = useRouter();
 
   const handleUpdateParams = (e: {title: string, value: string}) => {
     const newPathName = updateSearchParams(title, e.value.toLowerCase())
-    router.push(newPathName)
+    router.push(newPathName, {scroll: false})
   }
   return (
     <div className="w-fit">
